@@ -57,7 +57,7 @@ def update_sales_worksheet(data):
     sales_worksheet.append_row(data)
     print("Sales worksheet updated\n")
 
-def calculate_surplus_data(sales):
+def calculate_surplus_data(sales_row):
     """
     Compare sales stocks with stock to calculate surplus.
     The surplus defines whether there was waste or extra was made.
@@ -68,6 +68,12 @@ def calculate_surplus_data(sales):
     stock = SHEET.worksheet("stock").get_all_values()
     stock_row = stock[-1]
     print(stock_row)
+
+    surplus_data = []
+    for stock, sales in zip(stock_row, sales_row):
+        surplus = int(stock) - sales
+        surplus_data.append(surplus)
+    print(surplus_data)
 
 
 
